@@ -1,22 +1,17 @@
 #ifndef __RENDER_H__
 #define __RENDER_H__
+#include "rmath.h"
+#include <stdarg.h>
 struct Point
 {
-	unsigned long x;
-	unsigned long y;
-	unsigned long z;
+	struct Matrix * matrix;
 };
 struct Figure
 {
 	struct Point ** points;
-	unsigned int size;
+	unsigned int points_county;
 };
 
-struct Point * create_point(unsigned long x, unsigned long y, unsigned long z);
-struct Figure * create_figure();
-
-void add_point(struct Figure * figure, struct Point * point);
-void realloc_point(struct Figure * figure, struct Point * oldPoint, unsigned long * param, unsigned long * value);
-void remove_point(struct Figure * figure, struct Point * point);
-void delete_figure(struct Figure * figure);
+struct Point * create_point(double x, double y, double z);
+struct Figure * create_figure(unsigned int points_county, ...);
 #endif

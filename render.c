@@ -1,47 +1,33 @@
 #include<malloc.h>
+#include<stdarg.h>
+#include"rmath.h"
 #include"render.h"
-
-struct Point * create_point(unsigned long x, unsigned long y, unsigned long z)
+struct Point * create_point(double x, double y, double z)
 {
 	struct Point * point = (struct Point*)malloc(sizeof(struct Point));
-	
-	point->x = x;
-	point->y = y;
-	point->z = z;
+	point->matrix = create_matrix(3, 1, 0.0);
+	point->matrix->matrix[0][0] = x;
+	point->matrix->matrix[1][0] = y;
+	point->matrix->matrix[2][0] = z;
 
 	return point;
 }
-struct Figure * create_figure()
+struct Figure * create_figure(unsigned int points_county, ...)
 {
 	struct Figure * figure = (struct Figure*)malloc(sizeof(struct Figure));
-
+	figure->points_county = points_county;
 	figure->points = (struct Point**)malloc(sizeof(struct Point));
-	figure->size = 1;
-	
-	return figure;
-}
+	register int i = 1;
+	va_list arguments;
+	va_start(arguments, points_county);
 
-void add_point(struct Figure * figure, struct Point * point)
-{
-	if(figure == NULL || point == NULL)
-		return;
-
-	figure->points[figure->size-1] = point;
-	figure->points = realloc(figure->points, sizeof(struct Point)* (figure->size + 1));
-	figure->size += 1;
-}
-void delete_figure(struct Figure * figure)
-{
-	if(figure == NULL)
-		return;
-	for(unsigned int counter = 0; counter < figure->size-1; counter += 1)
+	while(i != points_county+1)
 	{
-		free(figure->points[counter]);
-		figure->points[counter] = NULL;
+		figure->points = realloc(figure->points, sizeof(struct Point) * i);
+		figure->points[i-1] = va_arg(arguments, struct Point*);
+		i += 1;
 	}
+	va_end(arguments);
 
-	free(figure->points);
-	figure->points = NULL;
-	free(figure);
-	figure = NULL;
+	return figure;
 }
