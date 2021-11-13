@@ -1,5 +1,4 @@
 #include<malloc.h>
-#include<unistd.h>
 #include<stdio.h>
 #include "rmath.h"
 	
@@ -20,21 +19,10 @@ int main()
 	matrix2->matrix[1][0] = 0.0;
 	matrix2->matrix[1][1] = 5.0;
 
-	for(unsigned int i = 0; i < matrix1->height; i += 1)
-        {
-                for(unsigned int j = 0; j < matrix1->width; j += 1)
-                        printf("%f", matrix1->matrix[i][j]);
-                printf("\n");
-        }
-	printf("\n");
-	matrix1 = matrix_Tr(matrix1);
-	for(unsigned int i = 0; i < matrix1->height; i += 1)
-	{
-		for(unsigned int j = 0; j < matrix1->width; j += 1)
-			printf("%f", matrix1->matrix[i][j]);
-		printf("\n");
-	}
+	struct Matrix * matrix3 = matrix_add(matrix1, matrix2);
+	
 	free_matrix(matrix1);
 	free_matrix(matrix2);
+	free_matrix(matrix3);
 	return 0;
 }

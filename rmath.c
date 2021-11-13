@@ -68,6 +68,7 @@ void free_matrix(struct Matrix * matrix)
 {
 	if(matrix == NULL || matrix->matrix == NULL)
 		return;
+	
 	for(unsigned int i = 0; i < matrix->height; i += 1)
 	{
 		free(matrix->matrix[i]);
@@ -77,4 +78,5 @@ void free_matrix(struct Matrix * matrix)
 	matrix->matrix = NULL;
 	free(matrix);
 	matrix = NULL;
+	return;
 }
