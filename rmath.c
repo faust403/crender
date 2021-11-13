@@ -57,10 +57,10 @@ struct Matrix * matrix_Tr(struct Matrix * matrix)
 {
 	if(matrix == NULL || matrix->matrix == NULL)
 		return NULL;
-	struct Matrix * resMatrix = create_matrix(matrix->height, matrix->width, 0.0);
+	struct Matrix * resMatrix = create_matrix(matrix->width, matrix->height, 0.0);
 
-	for(unsigned int i = 0; i < matrix->height; i += 1)
-		for(unsigned int j = 0; j < matrix->width; j += 1)
+	for(unsigned int i = 0; i < resMatrix->height; i += 1)
+		for(unsigned int j = 0; j < resMatrix->width; j += 1)
 			resMatrix->matrix[i][j] = matrix->matrix[j][i];
 	return resMatrix;
 }
