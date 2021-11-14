@@ -1,6 +1,10 @@
 #include"rmath.h"
+#include<stdio.h>
 #include<malloc.h>
 #include<math.h>
+
+
+
 struct Matrix * create_matrix(const unsigned int height, const unsigned int width, const double num)
 {
 	struct Matrix * matrix = (struct Matrix*)malloc(sizeof(struct Matrix));
@@ -42,7 +46,7 @@ struct Matrix * matrix_mult(const struct Matrix * matrix1, const struct Matrix *
 
 	for(unsigned int i = 0; i < matrix1->height; i += 1)
 		for(unsigned int j = 0; j < matrix2->width; j += 1)
-			for(unsigned int k = 0; k < matrix2->width; k += 1)
+			for(unsigned int k = 0; k < matrix2->height; k += 1)
 				resMatrix->matrix[i][j] += matrix1->matrix[i][k]*matrix2->matrix[k][j];
 	return resMatrix;
 }

@@ -2,6 +2,9 @@
 #define __RENDER_H__
 #include "rmath.h"
 #include <stdarg.h>
+
+
+
 struct Point
 {
 	struct Matrix * matrix;
@@ -19,4 +22,5 @@ struct Figure * create_figure(const unsigned int points_county, ...);
 struct Figure * rotate_x(struct Figure * figure, const double theta);
 struct Figure * rotate_y(struct Figure * figure, const double theta);
 struct Figure * rotate_z(struct Figure * figure, const double theta);
+struct Matrix * get_projection(struct Point * point);
 #endif

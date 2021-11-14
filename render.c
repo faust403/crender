@@ -3,6 +3,9 @@
 #include<stdarg.h>
 #include"rmath.h"
 #include"render.h"
+
+
+
 struct Point * create_point(const double x, const double y, const double z, const char symbol[])
 {
 	struct Point * point = (struct Point*)malloc(sizeof(struct Point));
@@ -87,4 +90,17 @@ struct Figure * rotate_z(struct Figure * figure, const double theta)
                 figure->points[i]->matrix = mult_z(figure->points[i]->matrix, theta);
         return figure;
 
+}
+struct Matrix * get_projection(struct Point * point)
+{
+	if(point == NULL)
+		return NULL;
+
+	struct Matrix * projection_matrix = create_matrix(2, 3, 0.0);
+	projection_matrix->matrix[0][0] = 1.0;
+	projection_matrix->matrix[1][1] = 1.0;
+
+	struct Matrix * resMatrix_projection = matrix_mult(projection_matrix, point->matrix);
+	free_matrix(projection_matrix);
+	return resMatrix_projection;
 }

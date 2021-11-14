@@ -2,6 +2,9 @@
 #include<unistd.h>
 #include<stdio.h>
 #include "render.h"
+
+
+
 void setCursor(signed int x, signed int y)
 {
 	if(x < 0 || y < 0)
@@ -25,18 +28,12 @@ int main()
 	double angle = 0.00;
 	while(1)
 	{
-		sleep(0.5);
+		sleep(1);
 		system("clear");
 		for(unsigned int i = 0; i < figure->points_county; i += 1)
 		{
-			unsigned int x = 0, y = 0;
-			for(unsigned int j = 0; j < (unsigned int)figure->points[i]->matrix->matrix[0][0]; j += 1)
-				x += 1;
-			for(unsigned int j = 0; j < (unsigned int)figure->points[i]->matrix->matrix[1][0]; j += 1)
-				y += 1;
-			x += figure->center->matrix->matrix[0][0];
-			y += figure->center->matrix->matrix[1][0];
-			setCursor(x, y);
+			struct Matrix * projection = get_projection(figure->points[i]);
+			setCursor(projection->matrix[0][0]+figure->center->matrix->matrix[0][0], projection->matrix[1][0]+figure->center->matrix->matrix[1][0]);
 			fflush(stdout);
 			printf("%s", figure->points[i]->symbol);
 		}
