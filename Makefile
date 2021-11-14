@@ -20,13 +20,12 @@ build: $(SOURCES) $(EXECUTABLE)
         
 
 $(EXECUTABLE): $(OBJECTS)
-	$(CC) $(LDFLAGS) $(OBJECTS) -o $@
+	$(CC) $(LDFLAGS) $(OBJECTS) -lm -o $@
 
 %.o: %.c
-	$(CC) $(CFLAGS) $< -o $@
+	$(CC) $(CFLAGS) $< -lm -o $@
 
 clean:
 	rm -rf $(EXECUTABLE) *.o
 
 .PHONY: clean all build
-

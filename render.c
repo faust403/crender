@@ -1,15 +1,16 @@
 #include<malloc.h>
-#include<stdio.h>
+#include<string.h>
 #include<stdarg.h>
 #include"rmath.h"
 #include"render.h"
-struct Point * create_point(const double x, const double y, const double z)
+struct Point * create_point(const double x, const double y, const double z, const char symbol[])
 {
 	struct Point * point = (struct Point*)malloc(sizeof(struct Point));
 	point->matrix = create_matrix(3, 1, 0.0);
 	point->matrix->matrix[0][0] = x;
 	point->matrix->matrix[1][0] = y;
 	point->matrix->matrix[2][0] = z;
+	strcpy(point->symbol, symbol);
 
 	return point;
 }
@@ -57,4 +58,33 @@ void free_figure(struct Figure * figure)
 	free(figure);
 	figure = NULL;
 	return;
+}
+struct Figure * rotate_x(struct Figure * figure, const double theta)
+{
+	if(figure == NULL)
+		return NULL;
+	
+	for(unsigned int i = 0; i < figure->points_county; i += 1)
+		figure->points[i]->matrix = mult_x(figure->points[i]->matrix, theta);
+	return figure;
+}
+struct Figure * rotate_y(struct Figure * figure, const double theta)
+{
+	if(figure == NULL)
+                return NULL;
+        
+	for(unsigned int i = 0; i < figure->points_county; i += 1)
+                figure->points[i]->matrix = mult_y(figure->points[i]->matrix, theta);
+        return figure;
+
+}
+struct Figure * rotate_z(struct Figure * figure, const double theta)
+{
+	if(figure == NULL)
+                return NULL;
+        
+	for(unsigned int i = 0; i < figure->points_county; i += 1)
+                figure->points[i]->matrix = mult_z(figure->points[i]->matrix, theta);
+        return figure;
+
 }
