@@ -5,7 +5,6 @@
 
 
 
-void setCursor_normal();
 int main()
 {
 	struct Point * center = create_point(5, 5, 5, " ");
