@@ -24,6 +24,8 @@ int main()
 	double angle = 0.00;
 	while(1)
 	{
+		if(angle >= 0.32)
+			angle = 0.0;
 		sleep(1);
 		system("clear");
 		for(unsigned int i = 0; i < figure->points_county; i += 1)
