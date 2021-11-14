@@ -16,6 +16,7 @@ struct Figure
 	unsigned int points_county;
 	struct Point * center;
 };
+void print_point(signed int x, signed int y, const char symbol[]);
 void free_figure(struct Figure * figure);
 struct Point * create_point(const double x, const double y, const double z, const char symbol[]);
 struct Figure * create_figure(const unsigned int points_county, ...);

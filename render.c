@@ -104,3 +104,11 @@ struct Matrix * get_projection(struct Point * point)
 	free_matrix(projection_matrix);
 	return resMatrix_projection;
 }
+void print_point(signed int x, signed int y, const char symbol[])
+{
+        if(x < 0 || y < 0)
+                return;
+        fflush(stdout);
+        printf("\033[%d;%dH", y, x*2);
+        printf("%s", symbol);
+}

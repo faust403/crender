@@ -5,12 +5,6 @@
 
 
 
-void setCursor(signed int x, signed int y)
-{
-	if(x < 0 || y < 0)
-		return;
-	printf("\033[%d;%dH", y, x*2);
-}
 void setCursor_normal();
 int main()
 {
@@ -35,10 +29,7 @@ int main()
 		for(unsigned int i = 0; i < figure->points_county; i += 1)
 		{
 			struct Matrix * projection = get_projection(figure->points[i]);
-			setCursor(10+projection->matrix[0][0]+figure->center->matrix->matrix[0][0], 10+projection->matrix[1][0]+figure->center->matrix->matrix[1][0]);
-			fflush(stdout);
-			printf("%s", figure->points[i]->symbol);
-			setCursor_normal();
+			print_point(10+projection->matrix[0][0]+figure->center->matrix->matrix[0][0], 10+projection->matrix[1][0]+figure->center->matrix->matrix[1][0], figure->points[i]->symbol);
 			free_matrix(projection);
 		}
 		figure = rotate_x(figure, angle);
