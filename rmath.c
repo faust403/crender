@@ -1,5 +1,4 @@
 #include"rmath.h"
-#include<stdio.h>
 #include<malloc.h>
 #include<math.h>
 
@@ -105,33 +104,45 @@ struct Matrix * neg_matrix(struct Matrix * matrix)
 			matrix->matrix[i][j] *= -1;
 	return matrix;
 }
-struct Matrix * mult_x(const struct Matrix * matrix, const double theta)
+struct Matrix * mult_x(struct Matrix * matrix, const double theta)
 {
-	register const struct Matrix * Rx = create_matrix(3, 3, 0.0);
+	register struct Matrix * Rx = create_matrix(3, 3, 0.0);
 	Rx->matrix[0][0] = 1.0;
 	Rx->matrix[1][1] = cos(theta);
 	Rx->matrix[1][2] = -sin(theta);
 	Rx->matrix[2][1] = sin(theta);
 	Rx->matrix[2][2] = cos(theta);
-	return matrix_mult(Rx, matrix);
+	
+	struct Matrix * Res = matrix_mult(Rx, matrix);
+	free_matrix(Rx);
+	free_matrix(matrix);
+	return Res;
 }
-struct Matrix * mult_y(const struct Matrix * matrix, const double theta)
+struct Matrix * mult_y(struct Matrix * matrix, const double theta)
 {
-	register const struct Matrix * Ry = create_matrix(3, 3, 0.0);
+	register struct Matrix * Ry = create_matrix(3, 3, 0.0);
 	Ry->matrix[0][0] = cos(theta);
 	Ry->matrix[0][2] = sin(theta);
 	Ry->matrix[1][1] = 1.0;
 	Ry->matrix[2][0] = -sin(theta);
 	Ry->matrix[2][2] = cos(theta);
-	return matrix_mult(Ry, matrix);
+
+	struct Matrix * Res = matrix_mult(Ry, matrix);
+        free_matrix(Ry);
+	free_matrix(matrix);
+	return Res;
 }
-struct Matrix * mult_z(const struct Matrix * matrix, const double theta)
+struct Matrix * mult_z(struct Matrix * matrix, const double theta)
 {
-	register const struct Matrix * Rz = create_matrix(3, 3, 0.0);
+	register struct Matrix * Rz = create_matrix(3, 3, 0.0);
 	Rz->matrix[0][0] = cos(theta);
 	Rz->matrix[0][1] = -sin(theta);
 	Rz->matrix[1][0] = sin(theta);
 	Rz->matrix[1][1] = cos(theta);
 	Rz->matrix[2][2] = 1.0;
-	return matrix_mult(Rz, matrix);
+	
+	struct Matrix * Res = matrix_mult(Rz, matrix);
+        free_matrix(Rz);
+	free_matrix(matrix);
+	return Res;
 }

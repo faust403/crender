@@ -1,4 +1,5 @@
 #include<malloc.h>
+#include<stdio.h>
 #include<string.h>
 #include<stdarg.h>
 #include"rmath.h"
@@ -13,7 +14,7 @@ struct Point * create_point(const double x, const double y, const double z, cons
 	point->matrix->matrix[0][0] = x;
 	point->matrix->matrix[1][0] = y;
 	point->matrix->matrix[2][0] = z;
-	strcpy(point->symbol, symbol);
+	memmove(point->symbol, symbol, strlen(symbol));
 
 	return point;
 }
@@ -102,6 +103,7 @@ struct Matrix * get_projection(struct Point * point)
 
 	struct Matrix * resMatrix_projection = matrix_mult(projection_matrix, point->matrix);
 	free_matrix(projection_matrix);
+	
 	return resMatrix_projection;
 }
 void print_point(signed int x, signed int y, const char symbol[])
