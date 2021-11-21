@@ -23,7 +23,7 @@ $(EXECUTABLE): $(OBJECTS)
 	$(CC) $(LDFLAGS) $(OBJECTS) -lm -o $@
 
 %.o: %.c
-	$(CC) $(CFLAGS) $< -lm -o $@
+	$(CC) $(CFLAGS) $< -o $@
 
 clean:
 	rm -rf $(EXECUTABLE) *.o

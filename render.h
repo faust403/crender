@@ -8,7 +8,7 @@
 struct Point
 {
 	struct Matrix * matrix;
-	char symbol[];
+	char symbol;
 };
 struct Figure
 {
@@ -16,9 +16,9 @@ struct Figure
 	unsigned int points_county;
 	struct Point * center;
 };
-void print_point(signed int x, signed int y, const char symbol[]);
+void print_point(signed int x, signed int y, const char symbol);
 void free_figure(struct Figure * figure);
-struct Point * create_point(const double x, const double y, const double z, const char symbol[]);
+struct Point * create_point(const double x, const double y, const double z, const char symbol);
 struct Figure * create_figure(const unsigned int points_county, ...);
 struct Figure * rotate_x(struct Figure * figure, const double theta);
 struct Figure * rotate_y(struct Figure * figure, const double theta);
