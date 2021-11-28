@@ -24,4 +24,5 @@ struct Figure * rotate_x(struct Figure * figure, const double theta);
 struct Figure * rotate_y(struct Figure * figure, const double theta);
 struct Figure * rotate_z(struct Figure * figure, const double theta);
 struct Matrix * get_projection(struct Point * point);
+void set_line(struct Figure * figure, const struct Point * point_from, const struct Point * point_to, const char symbol);
 #endif

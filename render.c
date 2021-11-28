@@ -116,3 +116,30 @@ void print_point(signed int x, signed int y, const char symbol)
         printf("\033[%d;%dH", y, x*2);
         printf("%c", symbol);
 }
+static void add_point_into_figure(struct Figure * figure, const struct Point * point)
+{
+	if(figure == NULL || point == NULL || figure->points == NULL)
+		return;
+
+	figure->points = realloc(figure->points, sizeof(struct Point)*(figure->points_county+1));
+	figure->points[figure->points_county] = point;
+	figure->points_county += 1;
+	return;
+}
+void set_line(struct Figure * figure, const struct Point * point_from, const struct Point * point_to, const char symbol)
+{
+	if(figure == NULL || figure->points == NULL || point_from == NULL || point_from->matrix == NULL || point_to == NULL || point_to->matrix == NULL)
+		return;
+
+	unsigned int distance = get_distance(point_from->matrix, point_to->matrix)-2;
+	struct Point ** array = (struct Point**)malloc(sizeof(struct Point) * distance);
+
+	for(unsigned int i = 0; i < distance; i += 1)
+	{
+		/*Brezenhame algorithm for 3d*/
+
+	}
+	for(unsigned int i = 0; i < distance; i += 1)
+		add_point_into_figure(figure, array[i]);
+	return;
+}

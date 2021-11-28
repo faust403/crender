@@ -146,3 +146,16 @@ struct Matrix * mult_z(struct Matrix * matrix, const double theta)
 	free_matrix(matrix);
 	return Res;
 }
+unsigned int get_distance(const struct Matrix * point_from, const struct Matrix * point_to)
+{
+	if(point_from == NULL || point_from->matrix == NULL || point_to == NULL || point_to->matrix == NULL)
+		return 0;
+
+	double xp1 = point_from->matrix[0][0],
+	yp1 = point_from->matrix[1][0],
+	zp1 = point_from->matrix[2][0],
+	xp2 = point_to->matrix[0][0],
+	yp2 = point_to->matrix[1][0],
+	zp2 = point_to->matrix[2][0];
+	return (unsigned int)sqrt(pow(xp2-xp1, 2) + pow(yp2-yp1, 2) + pow(zp2-zp1, 2));
+}

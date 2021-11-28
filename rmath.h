@@ -21,4 +21,5 @@ struct Matrix * mult_y(struct Matrix * matrix, const double theta);
 struct Matrix * mult_z(struct Matrix * matrix, const double theta);
 struct Matrix * neg_matrix(struct Matrix * matrix);
 void free_matrix(struct Matrix * matrix);
+unsigned int get_distance(const struct Matrix * point_from, const struct Matrix * point_to);
 #endif
