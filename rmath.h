@@ -2,7 +2,6 @@
 #define __RMATH_H__
 
 
-
 struct Matrix
 {
 	unsigned int width;

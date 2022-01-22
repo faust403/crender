@@ -159,3 +159,31 @@ unsigned int get_distance(const struct Matrix * point_from, const struct Matrix 
 	zp2 = point_to->matrix[2][0];
 	return (unsigned int)sqrt(pow(xp2-xp1, 2) + pow(yp2-yp1, 2) + pow(zp2-zp1, 2));
 }
+unsigned int get_distance_x(const struct Matrix * point_from, const struct Matrix * point_to)
+{
+	if(point_from == NULL || point_from->matrix == NULL || point_to == NULL || point_to->matrix == NULL)
+                return 0;
+
+	if(point_from->matrix[0][0] < 0 && point_to->matrix[0][0] > 0)
+		return abs(point_from->matrix[0][0]) + abs(point_to->matrix[0][0]);
+	return abs(point_from->matrix[0][0] - point_to->matrix[0][0]);
+}
+unsigned int get_distance_y(const struct Matrix * point_from, const struct Matrix * point_to)
+{
+	        if(point_from == NULL || point_from->matrix == NULL || point_to == NULL || point_to->matrix == NULL)                          
+                return 0;                                                                                                             
+                                                                                                                                      
+        if(point_from->matrix[1][0] < 0 && point_to->matrix[1][0] > 0)                                                                
+                return abs(point_from->matrix[1][0]) + abs(point_to->matrix[1][0]);                                                   
+        return abs(point_from->matrix[1][0] - point_to->matrix[1][0]);
+}
+unsigned int get_distance_z(const struct Matrix * point_from, const struct Matrix * point_to)
+{
+	        if(point_from == NULL || point_from->matrix == NULL || point_to == NULL || point_to->matrix == NULL)                          
+                return 0;                                                                                                             
+                                                                                                                                      
+        if(point_from->matrix[2][0] < 0 && point_to->matrix[2][0] > 0)                                                                
+                return abs(point_from->matrix[2][0]) + abs(point_to->matrix[2][0]);                                                   
+        return abs(point_from->matrix[2][0] - point_to->matrix[2][0]);
+
+}
